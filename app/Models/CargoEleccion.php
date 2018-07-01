@@ -26,34 +26,58 @@ class CargoEleccion extends Model
         return DB::select('SELECT id FROM proceso_elecciones');
     }
 
+    public static function getEscuelas(){
+        return DB::select("SELECT es.id, es.nombre as nombre_escuela, facu.nombre as nombre_facultad, ex.nombre as nombre_extension
+                                from escuelas as es, facultades as facu, extensiones as ex
+                                WHERE es.id_facultad = facu.id and
+                                es.id_extension = ex.id");
+    }
+
     public static function buscar($query){
         $tabla = self::$tabla;
         if(empty($query)){
-            return DB::select("select id, fecha_inicio, fecha_fin from $tabla");
+            return DB::select("SELECT count(ce.id_cargo), elecciones.id as eleccion, escuelas.nombre as escuelas, escuelas.id as id_escuela
+                              FROM cargos_por_elecciones as ce, cargos, proceso_elecciones as elecciones, escuelas
+                              where
+                              ce.id_cargo = cargos.id and
+                              ce.id_eleccion = elecciones.id and
+                              ce.id_escuela = escuelas.id
+                              GROUP BY elecciones.id, escuelas.nombre, escuelas.id");
         }
         else{
             return DB::select("SELECT id, fecha_inicio, fecha_fin FROM $tabla where id = '$query'");
         }
     }
 
-    public static function addNew($id, $fecha_inicio, $fecha_fin, $fecha_limite_postulacion, $fecha_limite_votacion){
+    public static function addNew($eleccion, $cargo, $escuela){
         $tabla = self::$tabla;
-        $return = DB::insert("INSERT INTO $tabla (id, fecha_inicio, fecha_fin, fecha_limite_postulacion, fecha_limite_votacion) VALUES ('$id','$fecha_inicio','$fecha_fin', '$fecha_limite_postulacion', '$fecha_limite_votacion')");
+        $return = DB::insert("INSERT INTO $tabla (id_cargo, id_eleccion, id_escuela) VALUES ($cargo,'$eleccion', $escuela)");
         return 1;
     }
 
-    public static function borrar($id){
+    public static function borrar($id_escuela,$id_eleccion){
         $tabla = self::$tabla;
-        DB::delete("DELETE FROM $tabla WHERE id = $id");
+        DB::delete("DELETE FROM $tabla WHERE id_escuela = $id_escuela AND id_eleccion = '$id_eleccion'");
     }
 
-    public static function getItem($id){
+    public static function getItem($id_escuela, $id_eleccion){
         $tabla = self::$tabla;
-        return DB::select("SELECT * from $tabla WHERE id = '$id'")[0];
+        return DB::select("SELECT cargos.nombre as cargo, escuelas.nombre, eleccion.id
+                        FROM cargos_por_elecciones as ce, cargos, escuelas, proceso_elecciones as eleccion
+                        WHERE
+                        ce.id_eleccion = '$id_eleccion' and
+                        ce.id_escuela = $id_escuela and
+                        ce.id_cargo = cargos.id and
+                        ce.id_escuela = escuelas.id and
+                        eleccion.id = ce.id_eleccion");
     }
 
-    public static function editar($id, $f_inicio, $f_fin, $fecha_limite_postulacion, $fecha_limite_votacion){
+    public static function editar($id_escuela, $id_eleccion, $cargos){
         $tabla = self::$tabla;
-        DB::update("update $tabla set fecha_inicio = '$f_inicio', fecha_fin = '$f_fin', fecha_limite_postulacion = '$fecha_limite_postulacion', fecha_limite_votacion = '$fecha_limite_votacion' WHERE id = '$id'");
+        self::borrar($id_escuela, $id_eleccion);
+        foreach($cargos as $cargo){
+            self::addNew($id_eleccion, $cargo, $id_escuela);
+        }
+        return 1;
     }
 }

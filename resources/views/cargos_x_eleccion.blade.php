@@ -37,20 +37,24 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="cargo">Cargo</label>
-                <select multiple name="cargo" id="cargo" class="form-control">
+            <span>Cargos</span>
+            <div class="card" style="color: #2F3133">
+                <div class="card-body">
                     @foreach($cargos as $cargo)
-                        <option value="{{ $cargo->id }}">{{ $cargo->nombre}}</option>
+                        <input type="checkbox" class="" name="cargos[]" value="{{ $cargo->id }}"> <span>{{ $cargo->nombre }}</span>
+                        <hr>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cargo">Escuela</label>
+                <select name="escuela" id="escuela" class="form-control">
+                    @foreach($escuelas as $escuela)
+                        <option value="{{ $escuela->id }}">Escuela: {{ $escuela->nombre_escuela}}-Facultad: {{ $escuela->nombre_facultad }} Extension: {{ $escuela->nombre_extension }}</option>
                     @endforeach
                 </select>
             </div>
-            {{--@foreach($cargos as $cargo)--}}
-                {{--<div class="form-group">--}}
-                    {{--<input type="checkbox" value="{{ $cargo->id }}" name="cargo">--}}
-                    {{--<label for="cargo">{{ $cargo->nombre }}</label>--}}
-                {{--</div>--}}
-            {{--@endforeach--}}
 
         @endslot
     @endcomponent
@@ -65,9 +69,14 @@
     @component('componentes.paneledit')
         @slot('mod', $mod)
         @slot('inputs')
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre">
+            <span>Cargos</span>
+            <div class="card" style="color: #2F3133">
+                <div class="card-body">
+                    @foreach($cargos as $cargo)
+                        <input type="checkbox" class="" name="cargos[]" value="{{ $cargo->id }}"> <span>{{ $cargo->nombre }}</span>
+                        <hr>
+                    @endforeach
+                </div>
             </div>
         @endslot
     @endcomponent

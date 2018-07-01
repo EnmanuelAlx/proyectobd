@@ -21,12 +21,14 @@ class CargoEleccionController extends Controller
         $cantidad = CargoEleccion::cantidad();
         $cargos = CargoEleccion::getCargos();
         $elecciones = CargoEleccion::getElecciones();
+        $escuelas = CargoEleccion::getEscuelas();
         return view('cargos_x_eleccion')->with(array(
             'mod' => self::MODEL,
             'cantidad' => $cantidad,
             'header' => 'Cargos por Eleccion',
             'cargos' => $cargos,
-            'elecciones' => $elecciones
+            'elecciones' => $elecciones,
+            'escuelas' => $escuelas
         ));
     }
 
@@ -37,9 +39,10 @@ class CargoEleccionController extends Controller
      */
     public function create(Request $request)
     {
-        $eleccion = $request->input('eleccion');
-
-//        ProcesoEleccion::addNew();
+        $inputs = $request->all();
+        foreach($inputs['cargos'] as $cargo){
+            CargoEleccion::addNew($inputs['eleccion'], $cargo, $inputs['escuela']);
+        }
         return response()->json('ok');
     }
 
@@ -54,16 +57,16 @@ class CargoEleccionController extends Controller
     public function store(Request $request)
     {
         $query = $request->input('query');
-        $rows = ProcesoEleccion::buscar($query);
+        $rows = CargoEleccion::buscar($query);
         $output = <<<EOT
             <div class="list-group">
 EOT;
         foreach($rows as $result){
             $output.=<<<EOT
             <div class="list-group-item">
-                <a href="#" class="search-result" data-id="$result->id">$result->id</a><br>
-                <span>Fecha de inicio <b>$result->fecha_inicio</b></span><br>
-                <span>Fecha de fin <b>$result->fecha_fin</b></span>
+                <a href="#" class="search-result" data-id="$result->id_escuela/$result->eleccion">$result->eleccion</a><br>
+                <span>Escuela: $result->escuelas</span><br>
+                <span>Cantidad de Cargos <b>$result->count</b></span>
             </div>
 EOT;
         }
@@ -83,15 +86,22 @@ EOT;
     public function show(Request $request)
     {
         $id = $request->input('id');
-        $record = ProcesoEleccion::getItem($id);
-
+        list($id_escuela, $id_eleccion) = explode('/',$id);
+        $record = CargoEleccion::getItem($id_escuela, $id_eleccion);
+        $escuela_lbl = $record[0]->nombre;
+        $id_eleccion_lbl = $record[0]->id;
         $output = <<<EOT
             <div>
-                <span>Eleccion: <b>$record->id</b></span><br>
-                <span>Fecha de Inicio: <b>$record->fecha_inicio</b></span><br>
-                <span>Fecha de Finalizacion: <b>$record->fecha_fin</b></span><br>
-                <span>Fecha limite de postulacion: <b>$record->fecha_limite_postulacion</b></span><br>
-                <span>Fecha limite de Votacion: <b>$record->fecha_limite_votacion</b></span>
+                <span>Cargos: </span><br>
+EOT;
+        foreach($record as $row){
+            $output.=<<<EOT
+                <span><b>$row->cargo</b></span><br>  
+EOT;
+        }
+        $output .= <<<EOT
+                <span>Escuela: <b>$escuela_lbl</b></span><br>
+                <span>Eleccion: <b>$id_eleccion_lbl</b></span><br>     
             </div>
 EOT;
 
@@ -111,12 +121,11 @@ EOT;
      */
     public function update(Request $request)
     {
-        $id = $request->input('id');
-        $f_inicio = $request->input('f_inicio');
-        $f_fin = $request->input('f_fin');
-        $fecha_limite_postulacion = $request->input('fecha_limite_postulacion');
-        $fecha_limite_votacion = $request->input('fecha_limite_votacion');
-        ProcesoEleccion::editar($id, $f_inicio, $f_fin, $fecha_limite_postulacion, $fecha_limite_votacion);
+        $id = $request->input('item_id');
+        list($id_escuela, $id_eleccion) = explode('/',$id);
+        $cargos = $request->input('cargos');
+
+        CargoEleccion::editar($id_escuela, $id_eleccion, $cargos);
         return response()->json('hey');
     }
 
@@ -128,9 +137,10 @@ EOT;
      */
     public function destroy(Request $request)
     {
-
         $id = $request->input('id');
-        ProcesoEleccion::borrar($id);
+        list($id_escuela, $id_eleccion) = explode('/',$id);
+
+        CargoEleccion::borrar($id_escuela, $id_eleccion);
         return response()->json($id);
     }
 }
