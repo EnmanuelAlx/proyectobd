@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class EscuelasController extends Controller
 {
-    const MODEL = 'CargoEleccion';
+    const MODEL = 'escuelas';
 
     /**
      * Display a listing of the resource.
@@ -18,15 +18,15 @@ class EscuelasController extends Controller
     public function index()
     {
 
-        $cantidad = CargoEleccion::cantidad();
-        $cargos = CargoEleccion::getCargos();
-        $elecciones = CargoEleccion::getElecciones();
-        return view('cargos_x_eleccion')->with(array(
+        $cantidad = Escuelas::cantidad();
+        $facultades = Escuelas::getFacultades();
+        $extensiones = Escuelas::getExtensiones();
+        return view('escuelas')->with(array(
             'mod' => self::MODEL,
             'cantidad' => $cantidad,
-            'header' => 'Cargos por Eleccion',
-            'cargos' => $cargos,
-            'elecciones' => $elecciones
+            'header' => 'Escuelas',
+            'facultades' => $facultades,
+            'extensiones' => $extensiones
         ));
     }
 
@@ -37,9 +37,10 @@ class EscuelasController extends Controller
      */
     public function create(Request $request)
     {
-        $eleccion = $request->input('eleccion');
-
-//        ProcesoEleccion::addNew();
+        $nombre = $request->input('nombre');
+        $id_facultad =$request->input('facultades');
+        $id_extension =$request->input('extensiones');
+        Escuelas::addNew($nombre,$id_facultad,$id_extension);
         return response()->json('ok');
     }
 
@@ -54,23 +55,24 @@ class EscuelasController extends Controller
     public function store(Request $request)
     {
         $query = $request->input('query');
-        $rows = ProcesoEleccion::buscar($query);
+        $rows = Escuelas::buscar($query);
+
         $output = <<<EOT
             <div class="list-group">
 EOT;
         foreach($rows as $result){
             $output.=<<<EOT
             <div class="list-group-item">
-                <a href="#" class="search-result" data-id="$result->id">$result->id</a><br>
-                <span>Fecha de inicio <b>$result->fecha_inicio</b></span><br>
-                <span>Fecha de fin <b>$result->fecha_fin</b></span>
+                <a href="#" class="search-result" data-id="$result->id">
+                    <span>Escuela: <b>$result->nombre_escuela</b></span><br>
+                    <span>Extension: <b>$result->nombre_extension</b></span>
+                </a>
             </div>
 EOT;
         }
         $output.=<<<EOT
             </div>
 EOT;
-
         return response()->json($output);
     }
 
@@ -83,18 +85,14 @@ EOT;
     public function show(Request $request)
     {
         $id = $request->input('id');
-        $record = ProcesoEleccion::getItem($id);
-
+        $record = Escuelas::getItem($id);
         $output = <<<EOT
             <div>
-                <span>Eleccion: <b>$record->id</b></span><br>
-                <span>Fecha de Inicio: <b>$record->fecha_inicio</b></span><br>
-                <span>Fecha de Finalizacion: <b>$record->fecha_fin</b></span><br>
-                <span>Fecha limite de postulacion: <b>$record->fecha_limite_postulacion</b></span><br>
-                <span>Fecha limite de Votacion: <b>$record->fecha_limite_votacion</b></span>
+                <span>Escuela: <b>$record->nombre_escuela</b></span><br>
+                <span>Facultad: <b>$record->nombre_facultad</b></span><br>
+                <span>Extension: <b>$record->nombre_extension</b></span>
             </div>
 EOT;
-
         return response()->json($output);
     }
 
@@ -111,12 +109,11 @@ EOT;
      */
     public function update(Request $request)
     {
-        $id = $request->input('id');
-        $f_inicio = $request->input('f_inicio');
-        $f_fin = $request->input('f_fin');
-        $fecha_limite_postulacion = $request->input('fecha_limite_postulacion');
-        $fecha_limite_votacion = $request->input('fecha_limite_votacion');
-        ProcesoEleccion::editar($id, $f_inicio, $f_fin, $fecha_limite_postulacion, $fecha_limite_votacion);
+        $id = $request->input('item_id');
+        $nombre = $request->input('nombre');
+        $facultad = $request->input('facultades');
+        $extension = $request->input('extensiones');
+        Escuelas::editar($id,$nombre,$facultad,$extension);
         return response()->json('hey');
     }
 
@@ -128,9 +125,8 @@ EOT;
      */
     public function destroy(Request $request)
     {
-
         $id = $request->input('id');
-        ProcesoEleccion::borrar($id);
+        Escuelas::borrar($id);
         return response()->json($id);
     }
 }

@@ -51,9 +51,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'cedula' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -63,9 +60,10 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(Request $request)
+    protected function registrar(Request $request)
     {
         $input = $request->all();
+        // dd($input);
         $user = '';
         if($input['optionsRadios'] == 2){
             $user = User::crearEgresado($input);

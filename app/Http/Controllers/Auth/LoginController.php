@@ -34,7 +34,6 @@ class LoginController extends Controller
     }
 
     public function showLoginForm(){
-        dd('hey');
         return view('auth.login');
     }
 

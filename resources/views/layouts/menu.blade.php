@@ -51,20 +51,18 @@
             <div class="sidebar">
                 <ul>
                     <li><a href="{{ route('dashboard') }}">Inicio</a></li>
-                    <li><a href="{{ route('cargos.index') }}">Cargos</a></li>
-                    <!-- <li class="submenu">
-                        <a href="#">Opcion 2 <span class="caret"></span></a>
+                    <li class="submenu">
+                        <a href="#">Cargos<span class="caret"></span></a>
                         <ul>
-                            <li><a href="#">Opcion 2.1</a></li>
-                            <li><a href="#">Opcion 2.2</a></li>
+                            <li><a href="{{ route('cargos.index') }}">Cargos</a></li>
+                            <li><a href="{{ route('cargo_x_eleccion.index') }}">Cargos por Eleccion</a></li>
                         </ul>
-                    </li> -->
+                    </li>
                     <li><a href="{{ route('eleccion.index') }}">Elecciones</a></li>
-                    <li><a href="{{ route('cargo_x_eleccion.index') }}">Cargos por Eleccion</a></li>
-                    <li><a href="">Opcion 2</a></li>
-                    <li><a href="http://">Opcion 6</a></li>
-                    <li><a href="http://">Opcion 7</a></li>
-                    <li><a href="http://">Opcion 8</a></li>
+                    <li><a href="{{ route('facultades.index') }}">Facultades</a></li>
+                    <li><a href="{{ route('extensiones.index') }}">Extensiones</a></li>
+                    <li><a href="{{ route('escuelas.index') }}">Escuelas</a></li>
+
                 </ul>
 
             </div>

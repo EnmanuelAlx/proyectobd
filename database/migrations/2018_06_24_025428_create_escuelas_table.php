@@ -15,7 +15,7 @@ class CreateEscuelasTable extends Migration
     {
         Schema::create('escuelas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre')->unique();
+            $table->string('nombre');
             $table->integer('id_facultad');
             $table->integer('id_extension');
             $table->foreign('id_facultad')->references('id')->on('facultades')

@@ -8,7 +8,7 @@
                     <h1 class="card-tittle">Registrarse</h1>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('register') }}" method="POST">
+                    <form action="{{ route('registrar') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="id">Cedula</label>

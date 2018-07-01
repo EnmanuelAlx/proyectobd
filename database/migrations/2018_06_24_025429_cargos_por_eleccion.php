@@ -32,6 +32,6 @@ class CargosPorEleccion extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('escuelas');
+        Schema::dropIfExists('cargos_por_elecciones');
     }
 }

@@ -15,7 +15,12 @@ class ExtensionesController extends Controller
      */
     public function index()
     {
-        //
+        $cantidad = Extensiones::cantidad();
+        return view('extensiones')->with(array(
+            'mod' => 'extensiones',
+            'cantidad' => $cantidad,
+            'header' => 'Extensiones'
+        ));
     }
 
     /**
@@ -23,9 +28,12 @@ class ExtensionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $nombre = $request->input('nombre');
+        Extensiones::addNew($nombre);
+        return response()->json('ok');
     }
 
     /**
@@ -36,51 +44,84 @@ class ExtensionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $query = $request->input('query');
+        $nombre = $request->input('nombre');
+        $rows = Extensiones::buscar($query,$nombre);
+        $output = <<<EOT
+            <div class="list-group">
+EOT;
+        foreach($rows as $result){
+            $output.=<<<EOT
+            <div class="list-group-item">
+                <a href="#" class="search-result" data-id="$result->id">$result->nombre</a><br>
+                
+            </div>
+EOT;
+        }
+        $output.=<<<EOT
+            </div>
+EOT;
+
+        return response()->json($output);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Extensiones  $extensiones
+     * @param  \App\Facultades  $facultades
      * @return \Illuminate\Http\Response
      */
-    public function show(Extensiones $extensiones)
+    public function show(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $record = Extensiones::getItem($id);
+
+        $output = <<<EOT
+            <div>
+                <span>Extension: <b>$record->nombre</b></span><br>
+            </div>
+EOT;
+
+        return response()->json($output);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Extensiones  $extensiones
+     * @param  \App\Facultades  $facultades
      * @return \Illuminate\Http\Response
      */
-    public function edit(Extensiones $extensiones)
+    public function edit(Facultades $facultades)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Extensiones  $extensiones
+     * @param  \App\Facultades  $facultades
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Extensiones $extensiones)
+    public function update(Request $request)
     {
-        //
+        $id = $request->input('item_id');
+        $nombre = $request->input('nombre');
+       
+        Extensiones::editar($id, $nombre);
+        return response()->json('hey');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Extensiones  $extensiones
+     * @param  \App\Facultades  $facultades
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Extensiones $extensiones)
+    public function destroy(Request $request)
     {
-        //
+         $id = $request->input('id');
+        Extensiones::borrar($id);
+        return response()->json($id);
     }
 }

@@ -25,7 +25,7 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('registrar') }}">Registrarse</a>
+                    <a href="{{ route('showRegister') }}">Registrarse</a>
                 </div>
             </div>
         </div>

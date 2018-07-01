@@ -15,7 +15,12 @@ class FacultadesController extends Controller
      */
     public function index()
     {
-        //
+        $cantidad = Facultades::cantidad();
+        return view('facultades')->with(array(
+            'mod' => 'facultades',
+            'cantidad' => $cantidad,
+            'header' => 'Facultades'
+        ));
     }
 
     /**
@@ -23,9 +28,12 @@ class FacultadesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $nombre = $request->input('nombre');
+        Facultades::addNew($nombre);
+        return response()->json('ok');
     }
 
     /**
@@ -36,7 +44,24 @@ class FacultadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $query = $request->input('query');
+        $nombre = $request->input('nombre');
+        $rows = Facultades::buscar($query,$nombre);
+        $output = <<<EOT
+            <div class="list-group">
+EOT;
+        foreach($rows as $result){
+            $output.=<<<EOT
+            <div class="list-group-item">
+                <a href="#" class="search-result" data-id="$result->id">$result->nombre</a><br>
+            </div>
+EOT;
+        }
+        $output.=<<<EOT
+            </div>
+EOT;
+
+        return response()->json($output);
     }
 
     /**
@@ -45,9 +70,18 @@ class FacultadesController extends Controller
      * @param  \App\Facultades  $facultades
      * @return \Illuminate\Http\Response
      */
-    public function show(Facultades $facultades)
+    public function show(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $record = Facultades::getItem($id);
+
+        $output = <<<EOT
+            <div>
+                <span>Facultad: <b>$record->nombre</b></span><br>
+            </div>
+EOT;
+
+        return response()->json($output);
     }
 
     /**
@@ -58,7 +92,7 @@ class FacultadesController extends Controller
      */
     public function edit(Facultades $facultades)
     {
-        //
+        
     }
 
     /**
@@ -68,9 +102,13 @@ class FacultadesController extends Controller
      * @param  \App\Facultades  $facultades
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Facultades $facultades)
+    public function update(Request $request)
     {
-        //
+        $id = $request->input('item_id');
+        $nombre = $request->input('nombre');
+       
+        Facultades::editar($id, $nombre);
+        return response()->json('hey');
     }
 
     /**
@@ -79,8 +117,10 @@ class FacultadesController extends Controller
      * @param  \App\Facultades  $facultades
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Facultades $facultades)
+    public function destroy(Request $request)
     {
-        //
+         $id = $request->input('id');
+        Facultades::borrar($id);
+        return response()->json($id);
     }
 }
