@@ -58,6 +58,13 @@
                             <li><a href="{{ route('cargo_x_eleccion.index') }}">Cargos por Eleccion</a></li>
                         </ul>
                     </li>
+                    <li class="submenu">
+                        <a href="#">Profesores<span class="caret"></span></a>
+                        <ul>
+                            {{--<li><a href="{{ route('profesores.index') }}">Profesores</a></li>--}}
+                            <li><a href="{{ route('profesores_votantes.index') }}">Profesores Votantes</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ route('eleccion.index') }}">Elecciones</a></li>
                     <li><a href="{{ route('facultades.index') }}">Facultades</a></li>
                     <li><a href="{{ route('extensiones.index') }}">Extensiones</a></li>

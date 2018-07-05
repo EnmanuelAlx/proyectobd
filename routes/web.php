@@ -87,6 +87,17 @@ Route::group(['prefix' => 'admin'], function(){
     });
     ////////////////////////////////////////////////
 
+    /////////////////////Profesores_votantes//////////
+    Route::group(['prefix' => 'ProfesoresVotantes'], function(){
+        Route::get('/', 'ProfesoresVotantesController@index')->name('profesores_votantes.index');
+        Route::post('/buscar','ProfesoresVotantesController@store');
+        Route::post('/add_new', 'ProfesoresVotantesController@create');
+        Route::get('/get_item', 'ProfesoresVotantesController@show');
+        Route::get('/delete_item', 'ProfesoresVotantesController@destroy');
+        Route::post('/edit', 'ProfesoresVotantesController@update');
+    });
+    ////////////////////////////////////////////////
+
 
 
 });

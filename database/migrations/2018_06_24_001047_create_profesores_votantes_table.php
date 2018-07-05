@@ -16,6 +16,7 @@ class CreateProfesoresVotantesTable extends Migration
         Schema::create('profesores_votantes', function (Blueprint $table) {
             $table->string('id_eleccion');
             $table->integer('cedula_profesor');
+            $table->integer('voto');
             $table->primary(['id_eleccion', 'cedula_profesor']);
             $table->foreign('id_eleccion')->references('id')->on('proceso_elecciones')
                 ->onDelete('restrict')->onUpdate('cascade');
