@@ -20,7 +20,7 @@ class CreateEgresadosTable extends Migration
             $table->string('pais');
             $table->string('foto');
             $table->foreign('cedula')
-                ->references('cedula')
+                ->references('id')
                 ->on('usuarios')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
