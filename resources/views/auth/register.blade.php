@@ -32,6 +32,26 @@
                             {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
                         </div>
 
+
+                        <div class="form-group">
+                            <label for="escuela">Escuela</label>
+                            <select name="escuela" id="escuela" class="form-control">
+                                @foreach($escuelas as $escuela)
+                                    <option value="{{ $escuela->id }}">{{ $escuela->nombre}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="extensiones">Extension</label>
+                            <select name="extension" id="extension" class="form-control">
+                                @foreach($extensiones as $extension)
+                                    <option value="{{ $extension->id }}">{{ $extension->nombre}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
                         <div class="row">
                             <div class="form-group col">
                                 <input type="radio" class="form-control" name="optionsRadios" id="profesor" value="1" checked>

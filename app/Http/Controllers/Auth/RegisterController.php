@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Escuelas;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +64,7 @@ class RegisterController extends Controller
     protected function registrar(Request $request)
     {
         $input = $request->all();
-        // dd($input);
+
         $user = '';
         if($input['optionsRadios'] == 2){
             $user = User::crearEgresado($input);
@@ -78,7 +79,11 @@ class RegisterController extends Controller
     }
 
     public function showRegister(){
-        return view('auth.register');
+
+        return view('auth.register')->with(array(
+            'escuelas' => Escuelas::getEscuelas(),
+            'extensiones' => Escuelas::getExtensiones()
+        ));
     }
 
 

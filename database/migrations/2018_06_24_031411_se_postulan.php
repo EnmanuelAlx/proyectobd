@@ -27,12 +27,6 @@ class SePostulan extends Migration
             $table->foreign(['id_cargos', 'id_eleccion', 'id_escuelas'])->references(['id_cargos', 'id_eleccion', 'id_escuelas'])
                 ->on('cargos_por_elecciones');
 
-//            $table->foreign('id_eleccion')->references('id_eleccion')->on('cargos_por_elecciones')
-//                ->onDelete('restrict')->onUpdate('cascade');
-//
-//            $table->foreign('id_escuelas')->references('id_escuelas')->on('cargos_por_elecciones')
-//                ->onDelete('restrict')->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
