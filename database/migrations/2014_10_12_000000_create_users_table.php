@@ -19,6 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('direccion');
             $table->string('password');
             $table->integer('tipo');
+            $table->integer('id_escuela');
+            $table->integer('id_extension');
+            $table->foreign('id_escuela')->references('id')->on('escuelas')
+                ->onDelete('restrict')->onUpdate('cascade');
+            $table->foreign('id_extension')->references('id')->on('extensiones')
+                ->onDelete('restrict')->onUpdate('cascade');
             $table->primary('cedula');
             $table->timestamps();
         });

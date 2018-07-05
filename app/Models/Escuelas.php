@@ -19,11 +19,18 @@ class Escuelas extends Model
     }
 
     public static function getFacultades(){
-        return DB::select("SELECT id, nombre FROM facultades");
+        return DB::select("SELECT id, nombre 
+                           FROM facultades");
     }
 
     public static function getExtensiones(){
-        return DB::select("SELECT id, nombre FROM extensiones");
+        return DB::select("SELECT id, nombre
+                           FROM extensiones");
+    }
+
+    public static function getEscuelas(){
+        return DB::select("SELECT id, nombre 
+                           FROM escuelas");
     }
 
     public static function buscar($query){

@@ -65,6 +65,14 @@
                             <li><a href="{{ route('profesores_votantes.index') }}">Profesores Votantes</a></li>
                         </ul>
                     </li>
+
+                    <li class="submenu">
+                        <a href="#">Egresados<span class="caret"></span></a>
+                        <ul>
+                            {{--<li><a href="{{ route('profesores.index') }}">Profesores</a></li>--}}
+                            <li><a href="{{ route('egresados_votantes.index') }}">Egresados Votantes</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ route('eleccion.index') }}">Elecciones</a></li>
                     <li><a href="{{ route('facultades.index') }}">Facultades</a></li>
                     <li><a href="{{ route('extensiones.index') }}">Extensiones</a></li>

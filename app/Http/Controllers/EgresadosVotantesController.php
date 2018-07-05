@@ -2,30 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\CargoEleccion;
 use App\EgresadosVotantes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class EgresadosVotantesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    const MODEL = 'EgresadosVotantes';
+
     public function index()
     {
-        //
+        $cantidad = EgresadosVotantes::cantidad();
+        $egresados = EgresadosVotantes::getEgresados();
+        $elecciones = CargoEleccion::getElecciones();
+        return view('EgresadosVotantes')->with(array(
+            'mod' => self::MODEL,
+            'cantidad' => $cantidad,
+            'header' => 'Egresados Votantes',
+            'egresados' => $egresados,
+            'elecciones' => $elecciones
+        ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $inputs = $request->all();
+        foreach($inputs['egresados'] as $egresado){
+            EgresadosVotantes::addNew($inputs['eleccion'], $egresado);
+        }
+        return response()->json('ok');
     }
 
     /**
@@ -34,53 +40,93 @@ class EgresadosVotantesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //Muestra el resultado de la busqueda
     public function store(Request $request)
     {
-        //
+        $query = $request->input('query');
+        $rows = EgresadosVotantes::buscar($query);
+        $output = <<<EOT
+            <div class="list-group">
+EOT;
+        foreach($rows as $result){
+            $output.=<<<EOT
+            <div class="list-group-item">
+                <a href="#" class="search-result" data-id="$result->id_eleccion">$result->id_eleccion</a><br>              
+                <span>Cantidad de Egresados Votantes <b>$result->cantidad_profesores</b></span>
+            </div>
+EOT;
+        }
+        $output.=<<<EOT
+            </div>
+EOT;
+
+        return response()->json($output);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\EgresadosVotantes  $egresadosVotantes
+     * @param  \App\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function show(EgresadosVotantes $egresadosVotantes)
+    public function show(Request $request)
     {
-        //
+        $eleccion = $request->input('id');
+        $record = EgresadosVotantes::getItem($eleccion);
+        $eleccion_lbl = $record[0]->eleccion;
+        $output = <<<EOT
+            <div>
+                <span>Eleccion: $eleccion_lbl</span><br>
+                <span>Profesores: </span><br>
+<hr>
+    <table class="table">
+    <tr>
+    <th>Cedula</th>
+    <th>Nombre</th>
+</tr>
+EOT;
+        foreach($record as $row){
+            $output.=<<<EOT
+            <tr>
+            <td>$row->cedulas</td>
+            <td>$row->nombres</td>
+</tr>
+                
+EOT;
+        }
+        $output .= <<<EOT
+        </table>
+            </div>
+EOT;
+
+        return response()->json($output);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\EgresadosVotantes  $egresadosVotantes
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(EgresadosVotantes $egresadosVotantes)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EgresadosVotantes  $egresadosVotantes
+     * @param  \App\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EgresadosVotantes $egresadosVotantes)
+    public function update(Request $request)
     {
-        //
+        return response()->json('hey');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EgresadosVotantes  $egresadosVotantes
+     * @param  \App\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EgresadosVotantes $egresadosVotantes)
+    public function destroy(Request $request)
     {
-        //
+        $id_eleccion = $request->input('id');
+        EgresadosVotantes::borrar($id_eleccion);
+        return response()->json($id_eleccion);
     }
 }

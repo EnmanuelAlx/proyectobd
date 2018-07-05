@@ -98,6 +98,28 @@ Route::group(['prefix' => 'admin'], function(){
     });
     ////////////////////////////////////////////////
 
+    /////////////////////Egresados_votantes//////////
+    Route::group(['prefix' => 'EgresadosVotantes'], function(){
+        Route::get('/', 'EgresadosVotantesController@index')->name('egresados_votantes.index');
+        Route::post('/buscar','EgresadosVotantesController@store');
+        Route::post('/add_new', 'EgresadosVotantesController@create');
+        Route::get('/get_item', 'EgresadosVotantesController@show');
+        Route::get('/delete_item', 'EgresadosVotantesController@destroy');
+        Route::post('/edit', 'EgresadosVotantesController@update');
+    });
+    ////////////////////////////////////////////////
+
+    /////////////////////Postulaciones//////////
+    Route::group(['prefix' => 'Postulaciones'], function(){
+        Route::get('/', 'EgresadosVotantesController@index')->name('egresados_votantes.index');
+        Route::post('/buscar','EgresadosVotantesController@store');
+        Route::post('/add_new', 'EgresadosVotantesController@create');
+        Route::get('/get_item', 'EgresadosVotantesController@show');
+        Route::get('/delete_item', 'EgresadosVotantesController@destroy');
+        Route::post('/edit', 'EgresadosVotantesController@update');
+    });
+    ////////////////////////////////////////////////
+
 
 
 });

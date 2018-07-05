@@ -40,12 +40,14 @@ class User extends Authenticatable
         $fecha_egreso = $input['fecha_egreso'];
         $estado = $input['estado'];
         $pais = $input['pais'];
+        $escuela = $input['escuela'];
+        $extension = $input['extension'];
         $foto = '';
         $count = DB::select("SELECT count(id) FROM usuarios where id = '$id'")[0]->count;
         if($count == 1){
             return 0;
         }
-        DB::insert("INSERT INTO usuarios (id, nombre, direccion, password, tipo) VALUES ('$id', '$nombre', '$direccion', '$password', $tipo)");
+        DB::insert("INSERT INTO usuarios (id, nombre, direccion, password, tipo, id_escuela, id_extension) VALUES ('$id', '$nombre', '$direccion', '$password', $tipo, $escuela, $extension)");
         DB::insert("INSERT INTO egresados (id, fecha_egreso, estado, pais, foto) VALUES ('$id', '$fecha_egreso', '$estado', '$pais', '$foto')");
         return array(
             'id' => $id,
@@ -59,11 +61,13 @@ class User extends Authenticatable
         $direccion =$input['direccion'];
         $password = Hash::make($input['password']);
         $tipo = $input['optionsRadios'];
+        $escuela = $input['escuela'];
+        $extension = $input['extension'];
         $count = DB::select("SELECT count(id) FROM usuarios where id = '$id'")[0]->count;
         if($count == 1){
             return 0;
         }
-        DB::insert("INSERT INTO usuarios (id, nombre, direccion, password, tipo) VALUES ('$id', '$nombre', '$direccion', '$password', $tipo)");
+        DB::insert("INSERT INTO usuarios (id, nombre, direccion, password, tipo, id_escuela, id_extension) VALUES ('$id', '$nombre', '$direccion', '$password', $tipo, $escuela, $extension)");
         DB::insert("INSERT INTO profesores (id) VALUES ('$id')");
         return array(
             'id' => $id,
