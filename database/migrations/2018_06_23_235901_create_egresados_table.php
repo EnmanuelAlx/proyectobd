@@ -14,17 +14,17 @@ class CreateEgresadosTable extends Migration
     public function up()
     {
         Schema::create('egresados', function (Blueprint $table) {
-            $table->integer('cedula');
+            $table->integer('id');
             $table->date('fecha_egreso');
             $table->string('estado');
             $table->string('pais');
             $table->string('foto');
-            $table->foreign('cedula')
+            $table->foreign('id')
                 ->references('id')
                 ->on('usuarios')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->primary('cedula');
+            $table->primary('id');
             $table->timestamps();
         });
     }

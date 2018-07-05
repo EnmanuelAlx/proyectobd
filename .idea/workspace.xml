@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45d35f32-f089-4567-862a-3590cc516833" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2018_06_23_235839_create_profesores_table.php" afterPath="$PROJECT_DIR$/database/migrations/2018_06_23_235839_create_profesores_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2018_06_23_235901_create_egresados_table.php" afterPath="$PROJECT_DIR$/database/migrations/2018_06_23_235901_create_egresados_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2018_06_24_001101_create_egresados_votantes_table.php" afterPath="$PROJECT_DIR$/database/migrations/2018_06_24_001101_create_egresados_votantes_table.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,9 +51,36 @@
       <file leaf-file-name="2018_06_23_235901_create_egresados_table.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/migrations/2018_06_23_235901_create_egresados_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+            <state relative-caret-position="340">
+              <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegisterController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-352">
+              <caret line="36" column="6" lean-forward="true" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-612">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1530382069954" expanded="true" signature="1065:1112" ph="SELECT count... usuarios" />
+                <marker date="1530382069954" expanded="true" signature="1203:1323" ph="INSERT INTO usuarios... " />
+                <marker date="1530382069954" expanded="true" signature="1347:1468" ph="INSERT INTO egresados... " />
+                <marker date="1530382069954" expanded="true" signature="1856:1903" ph="SELECT count... usuarios" />
+                <marker date="1530382069954" expanded="true" signature="1994:2114" ph="INSERT INTO usuarios... " />
+                <marker date="1530382069954" expanded="true" signature="2138:2180" ph="INSERT INTO profesores... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -65,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/database/migrations/2018_06_23_235839_create_profesores_table.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+              <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -137,7 +161,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="295" />
     <option name="y" value="-8" />
     <option name="width" value="1101" />
@@ -216,15 +240,15 @@
       <workItem from="1530389161215" duration="5832000" />
       <workItem from="1530411053264" duration="11216000" />
       <workItem from="1530595543973" duration="141000" />
-      <workItem from="1530743911473" duration="11848000" />
+      <workItem from="1530743911473" duration="12315000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29037000" />
+    <option name="totallyTimeSpent" value="29504000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -424,13 +448,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Escuelas.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -626,18 +643,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-352">
+          <caret line="36" column="6" lean-forward="true" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1530382069954" expanded="true" signature="1065:1112" ph="SELECT count... usuarios" />
+            <marker date="1530382069954" expanded="true" signature="1203:1323" ph="INSERT INTO usuarios... " />
+            <marker date="1530382069954" expanded="true" signature="1347:1468" ph="INSERT INTO egresados... " />
+            <marker date="1530382069954" expanded="true" signature="1856:1903" ph="SELECT count... usuarios" />
+            <marker date="1530382069954" expanded="true" signature="1994:2114" ph="INSERT INTO usuarios... " />
+            <marker date="1530382069954" expanded="true" signature="2138:2180" ph="INSERT INTO profesores... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2018_06_23_235839_create_profesores_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2018_06_23_235901_create_egresados_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        <state relative-caret-position="340">
+          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
           <folding />
         </state>
       </provider>
