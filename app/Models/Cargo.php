@@ -22,6 +22,11 @@ class Cargo extends Model
         return $cantidad[0]->count;
     }
 
+    public static function getCargos(){
+        $tabla = self::$tabla;
+        return DB::select("SELECT id, nombre FROM $tabla");
+    }
+
     public static function buscar($query, $tipo = 3){
         $tabla = self::$tabla;
         if(empty($query)){

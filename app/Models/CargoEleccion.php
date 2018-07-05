@@ -62,7 +62,7 @@ class CargoEleccion extends Model
 
     public static function getItem($id_escuela, $id_eleccion){
         $tabla = self::$tabla;
-        return DB::select("SELECT cargos.nombre as cargo, escuelas.nombre, eleccion.id
+        return DB::select("SELECT cargos.id as id_cargo,cargos.nombre as cargo, escuelas.nombre, eleccion.id
                         FROM cargos_por_elecciones as ce, cargos, escuelas, proceso_elecciones as eleccion
                         WHERE
                         ce.id_eleccion = '$id_eleccion' and

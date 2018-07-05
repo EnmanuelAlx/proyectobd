@@ -111,12 +111,13 @@ Route::group(['prefix' => 'admin'], function(){
 
     /////////////////////Postulaciones//////////
     Route::group(['prefix' => 'Postulaciones'], function(){
-        Route::get('/', 'EgresadosVotantesController@index')->name('egresados_votantes.index');
-        Route::post('/buscar','EgresadosVotantesController@store');
-        Route::post('/add_new', 'EgresadosVotantesController@create');
-        Route::get('/get_item', 'EgresadosVotantesController@show');
-        Route::get('/delete_item', 'EgresadosVotantesController@destroy');
-        Route::post('/edit', 'EgresadosVotantesController@update');
+        Route::get('/', 'PostulacionesController@index')->name('postularse.index');
+        Route::post('/buscar','PostulacionesController@store');
+        Route::post('/add_new', 'PostulacionesController@create');
+        Route::get('/get_item', 'PostulacionesController@show');
+        Route::get('/delete_item', 'PostulacionesController@destroy');
+        Route::post('/edit', 'PostulacionesController@update');
+        Route::post('/getCargos', 'PostulacionesController@getCargos');
     });
     ////////////////////////////////////////////////
 

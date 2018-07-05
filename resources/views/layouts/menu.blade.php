@@ -51,6 +51,7 @@
             <div class="sidebar">
                 <ul>
                     <li><a href="{{ route('dashboard') }}">Inicio</a></li>
+                    <li><a href="{{ route('postularse.index') }}">Postularse</a></li>
                     <li class="submenu">
                         <a href="#">Cargos<span class="caret"></span></a>
                         <ul>
