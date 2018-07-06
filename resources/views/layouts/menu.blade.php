@@ -60,6 +60,7 @@
                     <li><a href="{{ route('facultades.index') }}">Facultades</a></li>
                     <li><a href="{{ route('extensiones.index') }}">Extensiones</a></li>
                     <li><a href="{{ route('escuelas.index') }}">Escuelas</a></li>
+                    <li><a href="{{ route('votaciones.index') }}">Votaciones</a></li>
 
                 </ul>
 

@@ -19,6 +19,7 @@ Route::post('registrar', 'Auth\RegisterController@registrar')->name('registrar')
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
 
+
 Route::group(['prefix' => 'admin'], function(){
 
     //////////////////////Cargos////////////////////
@@ -98,6 +99,11 @@ Route::group(['prefix' => 'admin'], function(){
     });
     ////////////////////////////////////////////////
 
+    /////////////////////////////votacion////////////////////////////
+    Route::group(['prefix' => 'votaciones'], function(){
+        Route::get('index', 'votacionController@index')->name('votaciones.index');
+        Route::get('getPostulados', 'votacionController@getPostulados')->name('votaciones.getP');
+    });
 
 
 });
