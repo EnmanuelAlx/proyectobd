@@ -24,31 +24,22 @@
         </style>
     </head>
     <body>
-        <header>
-            <nav id="navbar" class="navbar navbar-expand-sm bg-dark navbar-dark pull-right">
+            <nav id="navbar" class="navbar navbar-dark bg-dark navbar-expand-sm">
                 <div>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ auth()->user()->nombre }}</a>
+                            <a class="nav-link" id="usuario" href="#">{{ auth()->user()->nombre }}</a>
                         </li>
-                        <!-- Dropdown -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                Configuracion
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#" style="color: #000000">Ajustes</a>
-                                {{--<a class="dropdown-item" href="#" style="color: #000000">Cerrar Sesion</a>--}}
-                                <form method="POST" action="{{ route('logout') }}">
+                        <ul class="navbar navbar-nav navbar-right">
+                          <form method="POST" action="{{ route('logout') }}">
                                     {{ csrf_field() }}
-                                    <button class="">Cerrar Sesion</button>
+                                    <li id="sesion"><a href="#"><span class=".label-success "></span>Cerrar Sesion</a></li>
                                 </form>
-                            </div>
-                        </li>
+                        </ul>
+                        
                     </ul>
                 </div>
             </nav>
-        </header>
         <div class="">
             <div class="sidebar">
                 <ul>
@@ -80,6 +71,7 @@
                     <li><a href="{{ route('facultades.index') }}">Facultades</a></li>
                     <li><a href="{{ route('extensiones.index') }}">Extensiones</a></li>
                     <li><a href="{{ route('escuelas.index') }}">Escuelas</a></li>
+                    <li><a href="{{ route('votaciones.index') }}">Votaciones</a></li>
 
                 </ul>
 

@@ -1,13 +1,15 @@
 body {
-    background: #E1F7E7;
+    background: white;
 }
 
-div.navbar-collapse {
-    background: #02547d;
+#sesion {
+    padding-left: 66rem;
+    text-decoration: none;
+    color: white;
 }
 
 nav#navbar a {
-    color: #fff;
+    color: white;
 }
 
 .sidebar {
@@ -16,30 +18,31 @@ nav#navbar a {
     top: 57px;
     width: 240px;
     height: 92%;
-    background: #02BEC4;
-    color: #000000;
-    outline: 1px solid #0284a8;
+    background: #2c4cdf;
+    color: white;
+    font-weight: bold;
 }
 
 .sidebar ul {
+    text-decoration: none;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.sidebar li {
-    outline: 1px solid #0284a8;
-    transition: border 0.2s;
-}
-
 .sidebar li:hover {
-    background: #0284a8;
+    text-decoration: none;
+    background: #0066ff;
     border-left: 5px solid #E1F7E7;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
 }
 
 .sidebar a {
+    text-decoration: none;
     display: block;
-    color: #000000;
+    color: white;
     text-decoration: none;
     padding: 10px;
 }
@@ -48,13 +51,13 @@ nav#navbar a {
     width: 82%;
     height: 82%;
     position: absolute;
-    background: #E1F7E7;
+    background: white;
     padding: 30px;
 }
 
 .sidebar ul ul {
     display: none;
-    background: #0284a8;
+    background: #0066ff;
 }
 
 .sidebar ul ul a {
