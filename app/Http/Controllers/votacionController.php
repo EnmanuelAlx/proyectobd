@@ -8,16 +8,17 @@ use App\Http\Controllers\Controller;
 
 class votacionController extends Controller
 {
-    public static $tabla= 'proceso_elecciones';
     public function index()
     {
-        $tabla = self::$tabla;
         $votantes=votacion::GetEleccionesAct(); 
         return view('votacion')->with(array(
                                 'votacion' => $votantes
                             ));         
     }
-    public function getPostulados(){
-        dd('hola');
+    public function GetPostuladosAct(){
+        $postulados=votacion::GetEleccionesAct(); 
+        return view('votacion')->with(array(
+                                'postulados' => $postulados
+                            ));    
     }
 }
