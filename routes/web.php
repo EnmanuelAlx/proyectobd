@@ -126,12 +126,8 @@ Route::group(['prefix' => 'admin'], function(){
     Route::group(['prefix' => 'votaciones'], function(){
         Route::get('index', 'votacionController@index')->name('votaciones.index');
         Route::get('getPostulados', 'votacionController@getPostulados')->name('votaciones.getP');
+        Route::get('getVoto', 'votacionController@getVoto')->name('votaciones.getVoto');
     });
-<<<<<<< HEAD
-=======
 
->>>>>>> 339ebd01e66126c0f4f7ff1578459e175ac760a3
-
-    
 });
 

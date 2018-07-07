@@ -18,7 +18,9 @@ class SePostulan extends Migration
             $table->integer('id_egresado_postulado');
             $table->integer('id_cargos');
             $table->string('id_eleccion');
+            $table->integer('n_votos');
             $table->integer('id_escuelas');
+
             $table->primary(['id_egresado_postulado', 'id_cargos', 'id_eleccion', 'id_escuelas']);
 
             $table->foreign('id_egresado_postulado')->references('id')->on('egresados_postulados')

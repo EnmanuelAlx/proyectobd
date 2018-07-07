@@ -31,10 +31,10 @@
                             <a class="nav-link" id="usuario" href="#">{{ auth()->user()->nombre }}</a>
                         </li>
                         <ul class="navbar navbar-nav navbar-right">
-                          <form method="POST" action="{{ route('logout') }}">
+                          <form method="POST" id="frm_logout" action="{{ route('logout') }}">
                                     {{ csrf_field() }}
-                                    <li id="sesion"><a href="#"><span class=".label-success "></span>Cerrar Sesion</a></li>
-                                </form>
+                                    <li id="sesion"><a href="#" id="logout"><span class=".label-success "></span>Cerrar Sesion</a></li>
+                            </form>
                         </ul>
                         
                     </ul>

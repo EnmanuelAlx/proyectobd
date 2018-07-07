@@ -18,6 +18,7 @@ class Posee extends Migration
             $table->integer('id_cargos');
             $table->string('id_eleccion');
             $table->integer('id_escuelas');
+            $table->integer('n_votos');
             $table->primary(['id_profesor_postulado', 'id_cargos', 'id_eleccion', 'id_escuelas']);
             $table->foreign('id_profesor_postulado')->references('id')->on('profesores_postulados')
                 ->onDelete('restrict')->onUpdate('cascade');
