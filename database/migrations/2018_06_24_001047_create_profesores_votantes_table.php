@@ -20,7 +20,7 @@ class CreateProfesoresVotantesTable extends Migration
             $table->primary(['id_eleccion', 'cedula_profesor']);
             $table->foreign('id_eleccion')->references('id')->on('proceso_elecciones')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('cedula_profesor')->references('cedula')->on('profesores')
+            $table->foreign('cedula_profesor')->references('id')->on('profesores')
                 ->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });

@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
                 ->onDelete('restrict')->onUpdate('cascade');
             $table->foreign('id_extension')->references('id')->on('extensiones')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->primary('cedula');
+            $table->primary('id');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateProfesoresTable extends Migration
     {
         Schema::create('profesores', function (Blueprint $table) {
             $table->integer('id');
-            $table->foreign('cedula')
+            $table->foreign('id')
                 ->references('id')
                 ->on('usuarios')
                 ->onDelete('cascade')

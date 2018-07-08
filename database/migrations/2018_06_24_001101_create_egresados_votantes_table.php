@@ -20,7 +20,7 @@ class CreateEgresadosVotantesTable extends Migration
             $table->primary(['id_eleccion', 'cedula_egresado']);
             $table->foreign('id_eleccion')->references('id')->on('proceso_elecciones')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('cedula_egresado')->references('cedula')->on('egresados')
+            $table->foreign('cedula_egresado')->references('id')->on('egresados')
                 ->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });

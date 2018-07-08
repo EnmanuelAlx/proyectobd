@@ -19,7 +19,7 @@ class CreateEgresadosPostuladosTable extends Migration
             $table->integer('cedula');
             $table->integer('n_votos');
             $table->integer('status');
-            $table->foreign('cedula')->references('cedula')->on('egresados')
+            $table->foreign('cedula')->references('id')->on('egresados')
                 ->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });
