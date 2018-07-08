@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\CargoEleccion;
+use App\User;
+use App\votacion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CargoEleccionController extends Controller
 {
@@ -20,7 +23,13 @@ class CargoEleccionController extends Controller
 
         $cantidad = CargoEleccion::cantidad();
         $cargos = CargoEleccion::getCargos();
-        $elecciones = CargoEleccion::getElecciones();
+        $elecciones = array('id' => 0);
+        if(Auth::user()->id == 1){
+            $elecciones = CargoEleccion::getElecciones();
+        }
+        else if(User::verificarComison(Auth::user()->id)){
+            $elecciones = CargoEleccion::GetEleccionesAct();
+        }
         $escuelas = CargoEleccion::getEscuelas();
         return view('cargos_x_eleccion')->with(array(
             'mod' => self::MODEL,

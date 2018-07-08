@@ -106,4 +106,11 @@ class Postulaciones extends Model
         $tabla = self::$tabla;
         DB::update("update $tabla set fecha_inicio = '$f_inicio', fecha_fin = '$f_fin', fecha_limite_postulacion = '$fecha_limite_postulacion', fecha_limite_votacion = '$fecha_limite_votacion' WHERE id = '$id'");
     }
+
+    public static function validateComisionElectoral($eleccion, $id){
+        return DB::select("SELECT count(*) 
+                           FROM comision_electoral
+                           WHERE cedula=$id AND
+                                 id_eleccion = '$eleccion'")[0]->count;
+    }
 }

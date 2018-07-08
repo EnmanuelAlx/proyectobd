@@ -20,17 +20,23 @@
 <script>
     $(document).ready(function(){
         $('button#delete-register').click(function(e){
-            e.preventDefault();
-            var $id = $(this).attr('data-id');
-            $.ajax({
-                type:'GET',
-                url: "{{url('admin/'.$mod.'/delete_item')}}",
-                dataType: 'json',
-                data:{id: $id},
-            }).done(function(data){
-                alert('Se ha eliminado el registro '+data);
-                $('#oculto_view').slideToggle('slow');
-            });
+           if(confirm('¿Seguro que desea eliminar este registro?')){
+               e.preventDefault();
+               var $id = $(this).attr('data-id');
+               $.ajax({
+                   type:'GET',
+                   url: "{{url('admin/'.$mod.'/delete_item')}}",
+                   dataType: 'json',
+                   data:{id: $id},
+               }).done(function(data){
+                   alert('Se ha eliminado el registro '+data);
+                   $('#oculto_view').slideToggle('slow');
+               });
+           }
+           else{
+               alert('No lo elimine ps :V');
+           }
+
         });
 
         $('button#edit-register').click(function(e){

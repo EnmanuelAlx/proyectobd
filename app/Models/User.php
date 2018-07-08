@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 class User extends Authenticatable
@@ -73,6 +74,38 @@ class User extends Authenticatable
             'id' => $id,
             'password' => $password
         );
+    }
+
+
+    public static function PuedeAgregar(){
+        if(Auth::user()->id == 1){
+            return true;
+        }
+        else if (self::verificarComison(Auth::user()->id)){
+            return true;
+        }
+        return false;
+    }
+
+    public static function verificarComison($id){
+        $id_eleccion = DB::select("select pe.id 
+        from proceso_elecciones as pe
+        where (select current_date) between pe.fecha_inicio and pe.fecha_fin")[0]->id;
+        $count = DB::select("SELECT count(*) FROM comision_electoral WHERE cedula = $id and id_eleccion = '$id_eleccion'")[0]->count;
+        if($count == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public static function PuedeEditar(){
+        if(Auth::user()->id == 1){
+            return true;
+        }
+        else if (self::verificarComison(Auth::user()->id)){
+            return true;
+        }
+        return false;
     }
 
 //    protected function create(array $data)

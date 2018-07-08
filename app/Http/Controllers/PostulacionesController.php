@@ -187,6 +187,10 @@ EOT;
     public function getCargos(Request $request)
     {
         $id_eleccion = $request->input('eleccion');
+        $validate = Postulaciones::validateComisionElectoral($id_eleccion, Auth::user()->id);
+        if($validate==1){
+            return response()->json('err.comision');
+        }
         $cargos = CargoEleccion::getItemWithTipo(Auth::user()->id_escuela, $id_eleccion, Auth::user()->tipo);
         if(empty($cargos)){
             return response()->json('err');

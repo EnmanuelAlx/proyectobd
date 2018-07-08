@@ -347,6 +347,7 @@ class ComposerStaticInit10eedc217947332553ba13e3fd842ccb
     public static $classMap = array (
         'App\\Cargo' => __DIR__ . '/../..' . '/app/Models/Cargo.php',
         'App\\CargoEleccion' => __DIR__ . '/../..' . '/app/Models/CargoEleccion.php',
+        'App\\ComisionElectoral' => __DIR__ . '/../..' . '/app/Models/ComisionElectoral.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Egresados' => __DIR__ . '/../..' . '/app/Models/Egresados.php',
         'App\\EgresadosPostulados' => __DIR__ . '/../..' . '/app/Models/EgresadosPostulados.php',
@@ -361,6 +362,7 @@ class ComposerStaticInit10eedc217947332553ba13e3fd842ccb
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\CargoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CargoController.php',
         'App\\Http\\Controllers\\CargoEleccionController' => __DIR__ . '/../..' . '/app/Http/Controllers/CargoEleccionController.php',
+        'App\\Http\\Controllers\\ComisionElectoralController' => __DIR__ . '/../..' . '/app/Http/Controllers/ComisionElectoralController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
         'App\\Http\\Controllers\\EgresadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/EgresadosController.php',

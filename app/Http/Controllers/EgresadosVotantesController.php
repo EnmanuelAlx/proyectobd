@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\CargoEleccion;
 use App\EgresadosVotantes;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class EgresadosVotantesController extends Controller
 {
@@ -15,7 +17,14 @@ class EgresadosVotantesController extends Controller
     {
         $cantidad = EgresadosVotantes::cantidad();
         $egresados = EgresadosVotantes::getEgresados();
-        $elecciones = CargoEleccion::getElecciones();
+        $elecciones = array('id' => 0);
+        if(Auth::user()->id == 1){
+            $elecciones = CargoEleccion::getElecciones();
+        }
+        else if(User::verificarComison(Auth::user()->id)){
+            $elecciones = CargoEleccion::GetEleccionesAct();
+        }
+
         return view('EgresadosVotantes')->with(array(
             'mod' => self::MODEL,
             'cantidad' => $cantidad,

@@ -69,6 +69,9 @@
                     if(data=='err'){
                         alert('No hay cargos para esta eleccion en tu escuela')
                     }
+                    else if(data == 'err.comision'){
+                        alert('Usted pertenece a la comision electoral de esta eleccion, no puede postularse')
+                    }
                     else{
                         $('div#cargos').html(data);
                     }

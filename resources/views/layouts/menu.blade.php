@@ -44,14 +44,29 @@
             <div class="sidebar">
                 <ul>
                     <li><a href="{{ route('dashboard') }}">Inicio</a></li>
+
+                    {{--Comision electoral solo la puede añadir un administrador--}}
+                    @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+                        <li><a href="{{ route('comisionElectoral.index') }}">Comision Electoral</a></li>
+                    @endif
+                    {{--//////////////////--}}
+
+
                     <li><a href="{{ route('postularse.index') }}">Postularse</a></li>
+                    <li><a href="{{ route('votaciones.index') }}">Votaciones</a></li>
                     <li class="submenu">
                         <a href="#">Cargos<span class="caret"></span></a>
                         <ul>
-                            <li><a href="{{ route('cargos.index') }}">Cargos</a></li>
+                            {{--Los cargos solo pueden ser añadidos por un admin--}}
+                            @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+                                <li><a href="{{ route('cargos.index') }}">Cargos</a></li>
+                            @endif
+                            {{--/////////////////////--}}
+
                             <li><a href="{{ route('cargo_x_eleccion.index') }}">Cargos por Eleccion</a></li>
                         </ul>
                     </li>
+
                     <li class="submenu">
                         <a href="#">Profesores<span class="caret"></span></a>
                         <ul>
@@ -68,10 +83,17 @@
                         </ul>
                     </li>
                     <li><a href="{{ route('eleccion.index') }}">Elecciones</a></li>
-                    <li><a href="{{ route('facultades.index') }}">Facultades</a></li>
-                    <li><a href="{{ route('extensiones.index') }}">Extensiones</a></li>
-                    <li><a href="{{ route('escuelas.index') }}">Escuelas</a></li>
-                    <li><a href="{{ route('votaciones.index') }}">Votaciones</a></li>
+
+                    {{--La lista de facultades, extensiones y escuelas solo la puede definir un administrador--}}
+                    @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+                        <li><a href="{{ route('facultades.index') }}">Facultades</a></li>
+                        <li><a href="{{ route('extensiones.index') }}">Extensiones</a></li>
+                        <li><a href="{{ route('escuelas.index') }}">Escuelas</a></li>
+                    @endif
+                    {{--////////////////////--}}
+
+
+
 
                 </ul>
 

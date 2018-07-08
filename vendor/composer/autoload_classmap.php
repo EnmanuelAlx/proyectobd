@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Cargo' => $baseDir . '/app/Models/Cargo.php',
     'App\\CargoEleccion' => $baseDir . '/app/Models/CargoEleccion.php',
+    'App\\ComisionElectoral' => $baseDir . '/app/Models/ComisionElectoral.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Egresados' => $baseDir . '/app/Models/Egresados.php',
     'App\\EgresadosPostulados' => $baseDir . '/app/Models/EgresadosPostulados.php',
@@ -22,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\CargoController' => $baseDir . '/app/Http/Controllers/CargoController.php',
     'App\\Http\\Controllers\\CargoEleccionController' => $baseDir . '/app/Http/Controllers/CargoEleccionController.php',
+    'App\\Http\\Controllers\\ComisionElectoralController' => $baseDir . '/app/Http/Controllers/ComisionElectoralController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DashboardController' => $baseDir . '/app/Http/Controllers/DashboardController.php',
     'App\\Http\\Controllers\\EgresadosController' => $baseDir . '/app/Http/Controllers/EgresadosController.php',

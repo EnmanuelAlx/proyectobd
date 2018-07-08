@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CargoEleccion extends Model
@@ -93,5 +94,14 @@ class CargoEleccion extends Model
             self::addNew($id_eleccion, $cargo, $id_escuela);
         }
         return 1;
+    }
+
+    public static function GetEleccionesAct(){
+        $id = Auth::user()->id;
+        return DB::select("select pe.id 
+        from proceso_elecciones as pe, comision_electoral
+        where (select current_date) between pe.fecha_inicio and pe.fecha_fin AND 
+        comision_electoral.cedula = $id AND 
+        comision_electoral.id_eleccion = pe.id");
     }
 }

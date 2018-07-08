@@ -128,6 +128,18 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('getPostulados', 'votacionController@getPostulados')->name('votaciones.getP');
         Route::get('getVoto', 'votacionController@getVoto')->name('votaciones.getVoto');
     });
+    /////////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////Comision Electoral//////////
+    Route::group(['prefix' => 'ComisionElectoral'], function(){
+        Route::get('/', 'ComisionElectoralController@index')->name('comisionElectoral.index');
+        Route::post('/buscar','ComisionElectoralController@store');
+        Route::post('/add_new', 'ComisionElectoralController@create');
+        Route::get('/get_item', 'ComisionElectoralController@show');
+        Route::get('/delete_item', 'ComisionElectoralController@destroy');
+        Route::post('/edit', 'ComisionElectoralController@update');
+    });
+    ////////////////////////////////////////////////
 
 });
 

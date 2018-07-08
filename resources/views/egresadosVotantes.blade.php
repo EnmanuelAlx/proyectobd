@@ -24,31 +24,33 @@
     @endcomponent
     <br>
 
-    {{--Componente del panel para agregar nuevo registro--}}
-    @component('componentes.paneladdnew')
-        @slot('mod', $mod)
-        @slot('inputs')
-            <div class="form-group">
-                <label for="eleccion">Eleccion</label>
-                <select name="eleccion" id="eleccion" class="form-control">
-                    @foreach($elecciones as $eleccion)
-                        <option value="{{ $eleccion->id }}">{{ $eleccion->id }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <span>Egresados</span>
-            <div class="card" style="color: #2F3133">
-                <div class="card-body">
-                    @foreach($egresados as $egresado)
-                        <input type="checkbox" class="" name="egresados[]" value="{{ $egresado->id }}"> <span><b>V-{{ $egresado->id }} </b>{{ $egresado->nombre }}</span>
-                        <hr>
-                    @endforeach
+    @if(\App\User::PuedeAgregar())
+        {{--Componente del panel para agregar nuevo registro--}}
+        @component('componentes.paneladdnew')
+            @slot('mod', $mod)
+            @slot('inputs')
+                <div class="form-group">
+                    <label for="eleccion">Eleccion</label>
+                    <select name="eleccion" id="eleccion" class="form-control">
+                        @foreach($elecciones as $eleccion)
+                            <option value="{{ $eleccion->id }}">{{ $eleccion->id }}</option>
+                        @endforeach
+                    </select>
                 </div>
-            </div>
 
-        @endslot
-    @endcomponent
+                <span>Egresados</span>
+                <div class="card" style="color: #2F3133">
+                    <div class="card-body">
+                        @foreach($egresados as $egresado)
+                            <input type="checkbox" class="" name="egresados[]" value="{{ $egresado->id }}"> <span><b>V-{{ $egresado->id }} </b>{{ $egresado->nombre }}</span>
+                            <hr>
+                        @endforeach
+                    </div>
+                </div>
+
+            @endslot
+        @endcomponent
+    @endif
 
 
     {{--Componente para el view del panel--}}

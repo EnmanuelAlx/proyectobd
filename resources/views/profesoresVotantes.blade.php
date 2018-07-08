@@ -24,6 +24,7 @@
     @endcomponent
     <br>
 
+    @if(\App\User::PuedeAgregar())
     {{--Componente del panel para agregar nuevo registro--}}
     @component('componentes.paneladdnew')
         @slot('mod', $mod)
@@ -49,19 +50,21 @@
 
         @endslot
     @endcomponent
-
+    @endif
 
     {{--Componente para el view del panel--}}
     @component('componentes.panelview')
         @slot('mod', $mod);
     @endcomponent
 
+    @if(\App\User::PuedeEditar())
     {{--Componente para el edit de un registro--}}
-    @component('componentes.paneledit')
+        @component('componentes.paneledit')
         @slot('mod', $mod)
         @slot('inputs')
 
         @endslot
     @endcomponent
+    @endif
 @stop
 
