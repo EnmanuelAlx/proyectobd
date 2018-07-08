@@ -14,16 +14,16 @@ class votacion extends Model
 
     public static function GetPostulados($periodo, $tipo, $id_escuela){
         if($tipo == 1){
-            return DB::select("SELECT usuarios.nombre, usuarios.id as cedula, ep.n_votos, cargos.nombre as nombre_cargo, ep.id as id_postulado, sp.id_cargos
+            return DB::select("SELECT usuarios.nombre, usuarios.id as cedula, sp.n_votos, cargos.nombre as nombre_cargo, ep.id as id_postulado, sp.id_cargos
                            FROM profesores_postulados as ep, posee as sp, cargos, usuarios
                            WHERE sp.id_eleccion = '$periodo' AND 
-                           ep.id = sp.id_profesores_postulado AND 
+                           ep.id = sp.id_profesor_postulado AND 
                            sp.id_escuelas = $id_escuela AND 
                            ep.cedula = usuarios.id AND 
                            sp.id_cargos = cargos.id");
         }
         else{
-            return DB::select("SELECT usuarios.nombre, usuarios.id as cedula, ep.n_votos, cargos.nombre as nombre_cargo, ep.id as id_postulado, sp.id_cargos
+            return DB::select("SELECT usuarios.nombre, usuarios.id as cedula, sp.n_votos, cargos.nombre as nombre_cargo, ep.id as id_postulado, sp.id_cargos
                            FROM egresados_postulados as ep, se_postulan as sp, cargos, usuarios
                            WHERE sp.id_eleccion = '$periodo' AND 
                            ep.id = sp.id_egresado_postulado AND 
@@ -48,11 +48,11 @@ class votacion extends Model
 
     public static function addVoto($id_postulado, $votante, $eleccion, $tipo, $id_cargo){
         if($tipo == 1){
-            $n_votos = DB::select("SELECT n_votos FROM posee WHERE id_profesor_postulado = $id_postulado AND id_eleccion = '$eleccion' AND id_cargos = $id_cargo")[0];
-            $n_votos->n_votos +=1;
+            $votos = DB::select("SELECT n_votos FROM posee WHERE id_profesor_postulado = $id_postulado AND id_eleccion = '$eleccion' AND id_cargos = $id_cargo")[0];
+            $n_votos = $votos->n_votos +=1;
             DB::update("UPDATE posee SET n_votos=$n_votos WHERE id_profesor_postulado = $id_postulado AND id_eleccion ='$eleccion' AND id_cargos = $id_cargo");
             DB::update("UPDATE profesores_votantes SET voto = 1 WHERE id_eleccion ='$eleccion' and cedula_profesor = $votante");
-            DB::insert("INSERT INTO votos_egresados (id_eleccion, cedula_egresado, id_egresado_postulado)
+            DB::insert("INSERT INTO votos_profesores (id_eleccion, cedula_profesor, id_profesor_postulado)
                         VALUES ('$eleccion', $votante, $id_postulado)");
         }else{
             $votos = DB::select("SELECT n_votos FROM se_postulan WHERE id_egresado_postulado = $id_postulado AND id_eleccion = '$eleccion' AND id_cargos = $id_cargo")[0];

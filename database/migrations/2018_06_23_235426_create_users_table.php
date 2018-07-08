@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('tipo');
             $table->integer('id_escuela');
             $table->integer('id_extension');
+            $table->string('remember_token');
             $table->foreign('id_escuela')->references('id')->on('escuelas')
                 ->onDelete('restrict')->onUpdate('cascade');
             $table->foreign('id_extension')->references('id')->on('extensiones')

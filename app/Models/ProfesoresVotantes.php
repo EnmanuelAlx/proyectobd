@@ -32,7 +32,7 @@ class ProfesoresVotantes extends Model
 
     public static function addNew($eleccion, $profesor){
         $tabla = self::$tabla;
-        $return = DB::insert("INSERT INTO $tabla (id_eleccion, cedula_profesor) VALUES ('$eleccion',$profesor)");
+        $return = DB::insert("INSERT INTO $tabla (id_eleccion, cedula_profesor, voto) VALUES ('$eleccion',$profesor, 0)");
         return 1;
     }
 

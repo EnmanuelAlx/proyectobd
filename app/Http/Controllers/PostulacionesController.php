@@ -187,7 +187,7 @@ EOT;
     public function getCargos(Request $request)
     {
         $id_eleccion = $request->input('eleccion');
-        $cargos = CargoEleccion::getItem(Auth::user()->id_escuela, $id_eleccion);
+        $cargos = CargoEleccion::getItemWithTipo(Auth::user()->id_escuela, $id_eleccion, Auth::user()->tipo);
         if(empty($cargos)){
             return response()->json('err');
         }

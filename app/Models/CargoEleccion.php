@@ -36,12 +36,12 @@ class CargoEleccion extends Model
     public static function buscar($query){
         $tabla = self::$tabla;
         if(empty($query)){
-            return DB::select("SELECT count(ce.id_cargo), elecciones.id as eleccion, escuelas.nombre as escuelas, escuelas.id as id_escuela
+            return DB::select("SELECT count(ce.id_cargos), elecciones.id as eleccion, escuelas.nombre as escuelas, escuelas.id as id_escuela
                               FROM cargos_por_elecciones as ce, cargos, proceso_elecciones as elecciones, escuelas
                               where
-                              ce.id_cargo = cargos.id and
+                              ce.id_cargos = cargos.id and
                               ce.id_eleccion = elecciones.id and
-                              ce.id_escuela = escuelas.id
+                              ce.id_escuelas = escuelas.id
                               GROUP BY elecciones.id, escuelas.nombre, escuelas.id");
         }
         else{
@@ -51,13 +51,13 @@ class CargoEleccion extends Model
 
     public static function addNew($eleccion, $cargo, $escuela){
         $tabla = self::$tabla;
-        $return = DB::insert("INSERT INTO $tabla (id_cargo, id_eleccion, id_escuela) VALUES ($cargo,'$eleccion', $escuela)");
+        $return = DB::insert("INSERT INTO $tabla (id_cargos, id_eleccion, id_escuelas) VALUES ($cargo,'$eleccion', $escuela)");
         return 1;
     }
 
     public static function borrar($id_escuela,$id_eleccion){
         $tabla = self::$tabla;
-        DB::delete("DELETE FROM $tabla WHERE id_escuela = $id_escuela AND id_eleccion = '$id_eleccion'");
+        DB::delete("DELETE FROM $tabla WHERE id_escuelas = $id_escuela AND id_eleccion = '$id_eleccion'");
     }
 
     public static function getItem($id_escuela, $id_eleccion){
@@ -66,11 +66,25 @@ class CargoEleccion extends Model
                         FROM cargos_por_elecciones as ce, cargos, escuelas, proceso_elecciones as eleccion
                         WHERE
                         ce.id_eleccion = '$id_eleccion' and
-                        ce.id_escuela = $id_escuela and
-                        ce.id_cargo = cargos.id and
-                        ce.id_escuela = escuelas.id and
+                        ce.id_escuelas = $id_escuela and
+                        ce.id_cargos = cargos.id and
+                        ce.id_escuelas = escuelas.id and
                         eleccion.id = ce.id_eleccion");
     }
+
+    public static function getItemWithTipo($id_escuela, $id_eleccion, $tipo){
+        $tabla = self::$tabla;
+        return DB::select("SELECT cargos.id as id_cargo,cargos.nombre as cargo, escuelas.nombre, eleccion.id
+                        FROM cargos_por_elecciones as ce, cargos, escuelas, proceso_elecciones as eleccion
+                        WHERE
+                        ce.id_eleccion = '$id_eleccion' and
+                        ce.id_escuelas = $id_escuela and
+                        ce.id_cargos = cargos.id and
+                        ce.id_escuelas = escuelas.id and
+                        eleccion.id = ce.id_eleccion AND 
+                        cargos.tipo = $tipo");
+    }
+
 
     public static function editar($id_escuela, $id_eleccion, $cargos){
         $tabla = self::$tabla;

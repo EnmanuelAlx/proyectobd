@@ -17,9 +17,8 @@
             <div class="form-group">
                 <label for="tipo">Buscar Por</label>
                 <select name="tipo" id="tipo" class="form-control">
-                    <option value="0">Profesores</option>
-                    <option value="1">Egresados</option>
-                    <option value="3">Todos</option>
+                    <option value="1">Profesores</option>
+                    <option value="2">Egresados</option>
                 </select>
             </div>
         @endslot
@@ -36,9 +35,8 @@
             </div>
             <div class="form-group">
                 <select name="tipo" id="tipo" class="form-control">
-                    <option value="0">Profesores</option>
-                    <option value="1">Egresados</option>
-                    <option value="3">Todos</option>
+                    <option value="1">Profesores</option>
+                    <option value="2">Egresados</option>
                 </select>
             </div>
         @endslot

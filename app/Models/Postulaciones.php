@@ -33,20 +33,20 @@ class Postulaciones extends Model
         $cedula = Auth::user()->id;
         if($tipo == 1){
             if(empty($query)){
-                return DB::select("SELECT ep.id, ep.cedula, ep.n_votos, posee.id_eleccion, count(posee.id_cargos) as num_cargos
+                return DB::select("SELECT ep.id, ep.cedula, posee.n_votos, posee.id_eleccion, count(posee.id_cargos) as num_cargos
                                    FROM profesores_postulados as ep, posee
                                    WHERE ep.cedula=$cedula AND 
                                    posee.id_profesor_postulado = ep.id
-                                   GROUP BY ep.id, ep.cedula, ep.n_votos, posee.id_eleccion");
+                                   GROUP BY ep.id, ep.cedula, posee.n_votos, posee.id_eleccion");
             }
         }
         else{
             if(empty($query)){
-                return DB::select("SELECT ep.id, ep.cedula, ep.n_votos,se_postulan.id_eleccion, count(se_postulan.id_cargos) as num_cargos
+                return DB::select("SELECT ep.id, ep.cedula, se_postulan.n_votos,se_postulan.id_eleccion, count(se_postulan.id_cargos) as num_cargos
                                    FROM egresados_postulados as ep, se_postulan
                                    WHERE ep.cedula=$cedula AND 
                                    se_postulan.id_egresado_postulado = ep.id
-                                   GROUP BY ep.id, ep.cedula, ep.n_votos, se_postulan.id_eleccion");
+                                   GROUP BY ep.id, ep.cedula, se_postulan.n_votos, se_postulan.id_eleccion");
             }
         }
 
@@ -64,8 +64,8 @@ class Postulaciones extends Model
             $id = $id[0]->id;
             foreach($cargos as $cargo){
 //            dd($id, $cargo, $eleccion, $id_escuela);
-                DB::insert("INSERT INTO se_postulan (id_egresado_postulado, id_cargos, id_eleccion, id_escuelas) 
-                        VALUES($id, $cargo,'$eleccion', $id_escuela)");
+                DB::insert("INSERT INTO se_postulan (id_egresado_postulado, id_cargos, id_eleccion, id_escuelas, n_votos) 
+                        VALUES($id, $cargo,'$eleccion', $id_escuela, 0)");
             }
         }
         else{
@@ -74,8 +74,8 @@ class Postulaciones extends Model
             $id = $id[0]->id;
             foreach($cargos as $cargo){
 //            dd($id, $cargo, $eleccion, $id_escuela);
-                DB::insert("INSERT INTO posee (id_profesor_postulado, id_cargos, id_eleccion, id_escuelas) 
-                        VALUES($id, $cargo,'$eleccion', $id_escuela)");
+                DB::insert("INSERT INTO posee (id_profesor_postulado, id_cargos, id_eleccion, id_escuelas, n_votos) 
+                        VALUES($id, $cargo,'$eleccion', $id_escuela, 0)");
             }
         }
         return 1;

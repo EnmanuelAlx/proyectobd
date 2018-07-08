@@ -32,7 +32,7 @@ class EgresadosVotantes extends Model
 
     public static function addNew($eleccion, $egresado){
         $tabla = self::$tabla;
-        $return = DB::insert("INSERT INTO $tabla (id_eleccion, cedula_egresado) VALUES ('$eleccion',$egresado)");
+        $return = DB::insert("INSERT INTO $tabla (id_eleccion, cedula_egresado, voto) VALUES ('$eleccion',$egresado, 0)");
         return 1;
     }
 
