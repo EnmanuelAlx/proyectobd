@@ -17,6 +17,10 @@
 </form>
 <div id='tabla'>
 </div>
+
+<form id="frm_print" method="get" action="{{ route('frm_get2') }}" target="_blank" class="hidden">
+    <input type="hidden" id="id_eleccion" name="id_eleccion">
+</form>
 <script>
     $(document).ready(function(){
 
@@ -31,9 +35,22 @@
                 dataType: 'json',
                 data: {frm: $frm.serialize(), periodo: $('#periodo').val()},
             }).done(function(data){
-                    $('div#tabla').html(data);
-                });
-        });
+                $('div#tabla').html(data);
+                bindItems($('#periodo').val());
+            });
+        })
+
+        function bindItems($eleccion){
+            $('#pdf').click(function(){
+                $token = $('input[name="_token"]').val();
+                $frm2 = $('#frm_print');
+                $url = $frm2.attr('action');
+                $('#id_eleccion').val($eleccion);
+                console.log($('#id_eleccion').val());
+                $frm2.submit();
+            });
+        }
+
     });
 </script>
 

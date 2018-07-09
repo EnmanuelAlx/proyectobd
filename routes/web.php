@@ -165,6 +165,14 @@ Route::group(['prefix' => 'admin'], function(){
 
         Route::get('/post_egre_1mas_cargos', 'reportesController@getpostmas1egre')->name('post_egre_1mas_cargos.index');
         Route::get('/elget', 'reportesController@elget1')->name('post_egre_1mas_cargos.get');
+
+
+        Route::get('PDFCargosEleccion', 'reportesController@printPdfCargos_eleccion')->name('frm_get');
+        Route::get('PDFegreunomascargos', 'reportesController@printPdfEgresadosUnoMasCargos')->name('frm_get2');
+        Route::get('PDFtotal_post_prof', 'reportesController@printPdftotal_post_prof')->name('frm_get3');
+        Route::get('PDFtotal_post_egre', 'reportesController@printPdftotal_post_egre')->name('frm_get4');
+
+
     });
     
 
