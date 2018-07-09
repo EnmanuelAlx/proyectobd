@@ -48,7 +48,7 @@ class User extends Authenticatable
         if($count == 1){
             return 0;
         }
-        DB::insert("INSERT INTO usuarios (id, nombre, direccion, password, tipo, id_escuela, id_extension) VALUES ('$id', '$nombre', '$direccion', '$password', $tipo, $escuela, $extension)");
+        DB::insert("INSERT INTO usuarios (id, nombre, direccion, password, tipo, id_escuela, id_extension, remember_token) VALUES ('$id', '$nombre', '$direccion', '$password', $tipo, $escuela, $extension, '1')");
         DB::insert("INSERT INTO egresados (id, fecha_egreso, estado, pais, foto) VALUES ('$id', '$fecha_egreso', '$estado', '$pais', '$foto')");
         return array(
             'id' => $id,
@@ -68,7 +68,7 @@ class User extends Authenticatable
         if($count == 1){
             return 0;
         }
-        DB::insert("INSERT INTO usuarios (id, nombre, direccion, password, tipo, id_escuela, id_extension) VALUES ('$id', '$nombre', '$direccion', '$password', $tipo, $escuela, $extension)");
+        DB::insert("INSERT INTO usuarios (id, nombre, direccion, password, tipo, id_escuela, id_extension, remember_token) VALUES ('$id', '$nombre', '$direccion', '$password', $tipo, $escuela, $extension, '1')");
         DB::insert("INSERT INTO profesores (id) VALUES ('$id')");
         return array(
             'id' => $id,

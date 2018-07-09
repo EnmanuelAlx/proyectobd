@@ -141,5 +141,26 @@ Route::group(['prefix' => 'admin'], function(){
     });
     ////////////////////////////////////////////////
 
+    ///////////////////reportes///////////////////////////////////
+    Route::group(['prefix' => 'reportes'], function(){
+        Route::get('/', 'ComisionElectoralController@index')->name('reportes.index');
+
+        Route::get('/total_post_prof', 'reportesController@getVotosProfesores')->name('total_post_prof.index');
+        Route::get('/electget', 'reportesController@votoProf')->name('total_post_prof.get');
+
+        Route::get('/total_post_egre', 'reportesController@getVotosEgresados')->name('total_post_egre.index');
+        Route::get('elecctget', 'reportesController@eleccttget')->name('total_post_egre.get');
+
+        Route::get('/cargos_eleccion', 'reportesController@reporteCargosEleccion')->name('cargos_eleccion.index');
+        Route::get('/eleccionget', 'reportesController@electget')->name('elecciones.get');
+
+        Route::get('/post_prof_1mas_cargos', 'reportesController@getpostmas1')->name('post_prof_1mas_cargos.index');
+        Route::get('/eleget', 'reportesController@eleget1')->name('post_prof_1mas_cargos.get');
+
+        Route::get('/post_egre_1mas_cargos', 'reportesController@getpostmas1egre')->name('post_egre_1mas_cargos.index');
+        Route::get('/elget', 'reportesController@elget1')->name('post_egre_1mas_cargos.get');
+    });
+    
+
 });
 
