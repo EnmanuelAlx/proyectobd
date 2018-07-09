@@ -92,6 +92,18 @@
                     @endif
                     {{--////////////////////--}}
 
+                    <li class="submenu">
+                        <a href="#">Reportes<span class="caret"></span></a>
+                        <ul>
+                            {{--<li><a href="{{ route('reportes.index') }}">reportes</a></li>--}}
+                            <li><a href="{{ route('total_post_prof.index') }}">total postulados profesores</a></li>
+                            <li><a href="{{ route('total_post_egre.index') }}">total postulados egresados</a></li>
+                            <li><a href="{{ route('cargos_eleccion.index') }}">cargos para eleccion</a></li>
+                            <li><a href="{{ route('post_prof_1mas_cargos.index') }}">profesores mas de 1 cargo</a></li>
+                            <li><a href="{{ route('post_egre_1mas_cargos.index') }}">egresados mas de 1 cargo</a></li>
+                        </ul>
+                    </li>
+
 
 
 
