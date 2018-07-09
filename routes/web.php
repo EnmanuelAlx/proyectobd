@@ -141,5 +141,12 @@ Route::group(['prefix' => 'admin'], function(){
     });
     ////////////////////////////////////////////////
 
+    /////////////////////Dashboard//////////
+    Route::group(['prefix' => 'Dashboard'], function(){
+        Route::get('get', 'DashboardController@getGraficas')->name('GetGraficas');
+
+    });
+    ////////////////////////////////////////////////
+
 });
 

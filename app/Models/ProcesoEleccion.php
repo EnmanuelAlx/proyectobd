@@ -48,4 +48,9 @@ class ProcesoEleccion extends Model
         $tabla = self::$tabla;
         DB::update("update $tabla set fecha_inicio = '$f_inicio', fecha_fin = '$f_fin', fecha_limite_postulacion = '$fecha_limite_postulacion', fecha_limite_votacion = '$fecha_limite_votacion' WHERE id = '$id'");
     }
+
+    public static function getEleccion($id){
+        $tabla = self::$tabla;
+        return DB::select("SELECT * FROM $tabla where id = '$id'");
+    }
 }

@@ -4394,5 +4394,55 @@
             "laravel",
             "pdf"
         ]
+    },
+    {
+        "name": "muhamadrezaar/highcharts",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/julles/laravel-highcharts.git",
+            "reference": "7128367636bf1526da38ca6c7982c826c67ab67a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/julles/laravel-highcharts/zipball/7128367636bf1526da38ca6c7982c826c67ab67a",
+            "reference": "7128367636bf1526da38ca6c7982c826c67ab67a",
+            "shasum": ""
+        },
+        "time": "2018-06-13T19:02:52+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "RezaAr\\Highcharts\\Provider"
+                ],
+                "aliases": {
+                    "Chart": "RezaAr\\Highcharts\\Facade"
+                }
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "RezaAr\\Highcharts\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Muhamad Reza Abdul Rohim",
+                "email": "reza.wikrama3@gmail.com"
+            }
+        ],
+        "description": "Laravel Highcarts Packages",
+        "keywords": [
+            "highcharts",
+            "laravel",
+            "packages"
+        ]
     }
 ]
