@@ -58,6 +58,7 @@ class ComposerStaticInit10eedc217947332553ba13e3fd842ccb
         ),
         'R' => 
         array (
+            'RezaAr\\Highcharts\\' => 18,
             'Ramsey\\Uuid\\' => 12,
         ),
         'P' => 
@@ -199,6 +200,10 @@ class ComposerStaticInit10eedc217947332553ba13e3fd842ccb
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'RezaAr\\Highcharts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/muhamadrezaar/highcharts/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -3072,6 +3077,13 @@ class ComposerStaticInit10eedc217947332553ba13e3fd842ccb
         'Ramsey\\Uuid\\UuidFactory' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactory.php',
         'Ramsey\\Uuid\\UuidFactoryInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactoryInterface.php',
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
+        'RezaAr\\Highcharts\\Classes\\Presenters\\ChartPresenter' => __DIR__ . '/..' . '/muhamadrezaar/highcharts/src/Classes/Presenters/ChartPresenter.php',
+        'RezaAr\\Highcharts\\Classes\\Presenters\\ContainerPresenter' => __DIR__ . '/..' . '/muhamadrezaar/highcharts/src/Classes/Presenters/ContainerPresenter.php',
+        'RezaAr\\Highcharts\\Classes\\Presenters\\InitJsPresenter' => __DIR__ . '/..' . '/muhamadrezaar/highcharts/src/Classes/Presenters/InitJsPresenter.php',
+        'RezaAr\\Highcharts\\Classes\\Presenters\\JsTransformerPresenter' => __DIR__ . '/..' . '/muhamadrezaar/highcharts/src/Classes/Presenters/JsTransformerPresenter.php',
+        'RezaAr\\Highcharts\\Facade' => __DIR__ . '/..' . '/muhamadrezaar/highcharts/src/Facade.php',
+        'RezaAr\\Highcharts\\Highcharts' => __DIR__ . '/..' . '/muhamadrezaar/highcharts/src/Highcharts.php',
+        'RezaAr\\Highcharts\\Provider' => __DIR__ . '/..' . '/muhamadrezaar/highcharts/src/Provider.php',
         'Sabberworm\\CSS\\CSSList\\AtRuleBlockList' => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib/Sabberworm/CSS/CSSList/AtRuleBlockList.php',
         'Sabberworm\\CSS\\CSSList\\CSSBlockList' => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib/Sabberworm/CSS/CSSList/CSSBlockList.php',
         'Sabberworm\\CSS\\CSSList\\CSSList' => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib/Sabberworm/CSS/CSSList/CSSList.php',

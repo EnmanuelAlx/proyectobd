@@ -71,5 +71,32 @@ class votacion extends Model
             return DB::select("SELECT count(*) FROM votos_egresados WHERE cedula_egresado = $cedula AND id_eleccion = '$periodo'")[0]->count;
         }
     }
+
+    public static function getVotosProfesores($eleccion){
+        return DB::select("SELECT usu.id, usu.nombre as nombre_profesor, car.nombre, pos.n_votos 
+                           FROM usuarios AS usu,cargos AS car,proceso_elecciones AS pe,cargos_por_elecciones AS ce, posee AS pos, extensiones AS ext, profesores_postulados as pp
+                           WHERE pe.id = '$eleccion' and
+                           ce.id_eleccion = pe.id and
+                           car.id = ce.id_cargos and
+                           pos.id_eleccion = ce.id_eleccion and 
+                           pp.id = pos.id_profesor_postulado and 
+                           usu.id = pp.cedula AND 
+                           pos.id_cargos = car.id
+                           order by car.nombre, pos.n_votos");
+    }
+
+    public static function getVotosEgresados($eleccion){
+        return DB::select("SELECT usu.id, usu.nombre nombre_egresado, car.nombre, sp.n_votos 
+                           FROM usuarios AS usu,cargos AS car,proceso_elecciones AS pe,cargos_por_elecciones AS ce, se_postulan as sp, extensiones AS ext, egresados_postulados as pp
+                           WHERE pe.id = '$eleccion' and
+                           ce.id_eleccion = pe.id and
+                           car.id = ce.id_cargos and 
+                           sp.id_eleccion = ce.id_eleccion and 
+                           pp.id = sp.id_egresado_postulado and 
+                           usu.id = pp.cedula AND 
+                           sp.id_cargos = car.id
+                           order by car.nombre, sp.n_votos");
+    }
+
 }
 
